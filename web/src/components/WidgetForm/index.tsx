@@ -42,13 +42,14 @@ export function WidgetForm () {
     const [feedbackSent, setFeedbackSent] = useState(false);
 
     function handleRestartFeedback (){
+        setFeedbackSent(false);
         setFeedbackType(null);
      }
     
     return (
     <div className="bg-blue-700 p-3 relative rounded-md text-white nb-3 flex flex-col items-center shadow-lg w-[cal(100vm-2rem)] md:w-auto">
        { feedbackSent ? (
-           <FeedbackSucessStep />
+        <FeedbackSucessStep onFeedbackRestartRequested= {handleRestartFeedback}/>
        ) : (
            <>
             {!feedbackType ? (
