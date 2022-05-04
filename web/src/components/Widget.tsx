@@ -1,6 +1,6 @@
 import { ChatCenteredText } from "phosphor-react";
 import { Popover } from "@headlessui/react"; 
-import { WidgetForm } from "./WidgetForm";
+import { WidgetForm } from "./WidgetForm/index";
 
 export function Widget() {
   return (
@@ -9,7 +9,7 @@ export function Widget() {
         <WidgetForm />
       </Popover.Panel>
     
-    <Popover.Button className="bg-blue-700 rounded-md p-3 h-12 text-white flex items-center group">
+    <Popover.Button className="bg-blue-700 rounded-md px-3 h-12 text-white flex items-center group">
     <ChatCenteredText className="w-6 h-6" />
     <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-linear">
       <span className="pl-2"></span>

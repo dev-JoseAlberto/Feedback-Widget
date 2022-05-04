@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { CloseButton } from "../CloseButton";
 import bugImageUrl  from "../../assets/bug.svg";
 import ideaImageUrl  from "../../assets/idea.svg";
 import thoughtImageUrl  from "../../assets/thought.svg";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
+import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
 
 
 export const feedbackTypes = {
@@ -19,7 +19,7 @@ export const feedbackTypes = {
         title:'Idea',
         image: {
             source: ideaImageUrl,
-            alt: ''
+            alt: 'Thought balloon'
         }
 
     },
@@ -39,26 +39,24 @@ export type FeedbackType = keyof typeof feedbackTypes;
 export function WidgetForm () {
     const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null)
 
+    function handleRestartFeedback (){
+        setFeedbackType(null);
+     }
+    
     return (
-    <div className="bg-blue-700 p-3 relative rounded-md text-white nb-3 flex flex-col items-center shadow-lg w-[cal(100vm-1rem)] md:w-auto">
-        <header>
-            <span className="text-xl leading-6">Give us Your Feedback</span>
-
-            <CloseButton />
-
-        </header>
-
-        
+    <div className="bg-blue-700 p-3 relative rounded-md text-white nb-3 flex flex-col items-center shadow-lg w-[cal(100vm-2rem)] md:w-auto">
         {!feedbackType ? (
-            <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType}/>
+        <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
         ) : (
-        <p>Hello World</p>
+        <FeedbackContentStep 
+        feedbackType={feedbackType}
+        onFeedbackRestartRequested={handleRestartFeedback}
+        />
     )}
-        
-        <footer className="text-xs text-neutral-50">
-            Done by <a className="underline underline-offset-2" href="">Jose Alberto</a>
-
-        </footer>
+    
+    <footer className="text-xs text-neutral-50">
+        Done by <a className="underline underline-offset-2" href="">Rocketseat</a>
+    </footer>
     </div>
     );
 }
